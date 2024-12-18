@@ -65,6 +65,8 @@ public class CityDaoJDBC implements CityDAO {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
+                cityList.clear();
+
                 while (resultSet.next()) {
 
                     cityList.add( new City(
@@ -72,13 +74,12 @@ public class CityDaoJDBC implements CityDAO {
                             resultSet.getString("CountryCode"), resultSet.getString("District"),
                             resultSet.getInt("Population")));
                 }
+                return cityList;
             }
 
             } catch (SQLException e2) {
                 throw new RuntimeException("Oops, something went wrong with the database query!");
             }
-
-                return List.of();
     }
 
     @Override
@@ -95,6 +96,8 @@ public class CityDaoJDBC implements CityDAO {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
+                cityList.clear();
+
                 while (resultSet.next()) {
 
                     cityList.add( new City(
@@ -102,12 +105,12 @@ public class CityDaoJDBC implements CityDAO {
                             resultSet.getString("CountryCode"), resultSet.getString("District"),
                             resultSet.getInt("Population")));
                 }
+                return cityList;
             }
 
         } catch (SQLException e3) {
             throw new RuntimeException("Oops, something went wrong with the database query!");
         }
-        return List.of();
     }
 
     @Override
@@ -121,8 +124,9 @@ public class CityDaoJDBC implements CityDAO {
         ) {
 
 
-            try (ResultSet resultSet = statement.executeQuery(sql))
-                 {
+            try (ResultSet resultSet = statement.executeQuery(sql)) {
+
+                cityList.clear();
 
                 while (resultSet.next()) {
 
@@ -131,12 +135,12 @@ public class CityDaoJDBC implements CityDAO {
                             resultSet.getString("CountryCode"), resultSet.getString("District"),
                             resultSet.getInt("Population")));
                 }
+                return cityList;
             }
 
         } catch (SQLException e4) {
             throw new RuntimeException("Oops, something went wrong with the database query!");
         }
-        return List.of();
     }
 
     @Override
@@ -184,7 +188,6 @@ public class CityDaoJDBC implements CityDAO {
         } catch (SQLException e6) {
             throw new RuntimeException("Oops, something went wrong with updating an object in the database!");
         }
-
         return null;
     }
 
