@@ -5,14 +5,23 @@ import java.util.Objects;
 public class City {
 
     int id;
-    String countryCode;
-    String name;
-    String district;
-    String population;
+    public String countryCode;
+    public String name;
+    public String district;
+    public String population;
 
     public City (int id, String name, String countryCode, String district, String population) {
 
         this.id = id;
+        this.name = name;
+        this.countryCode = countryCode;
+        this.district = district;
+        this.population = population;
+
+    }
+
+    public City (String name, String countryCode, String district, String population) {
+
         this.name = name;
         this.countryCode = countryCode;
         this.district = district;

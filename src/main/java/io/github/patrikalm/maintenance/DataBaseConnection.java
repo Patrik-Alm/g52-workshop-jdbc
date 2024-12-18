@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.Properties;
 
 public class DataBaseConnection {
@@ -26,7 +25,7 @@ public class DataBaseConnection {
             System.out.println("File read");
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Oops, something went wrong with reading properties file!");
         }
 
         System.out.println("Read Properties");
