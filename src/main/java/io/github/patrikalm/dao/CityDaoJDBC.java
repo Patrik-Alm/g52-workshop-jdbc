@@ -37,7 +37,7 @@ public class CityDaoJDBC implements CityDAO {
                     return new City(
                             resultSet.getInt("ID"), resultSet.getString("Name"),
                             resultSet.getString("CountryCode"), resultSet.getString("District"),
-                            resultSet.getString("Population")
+                            resultSet.getInt("Population")
                     );
                   }
                 }
@@ -70,7 +70,7 @@ public class CityDaoJDBC implements CityDAO {
                     cityList.add( new City(
                             resultSet.getInt("ID"), resultSet.getString("Name"),
                             resultSet.getString("CountryCode"), resultSet.getString("District"),
-                            resultSet.getString("Population")));
+                            resultSet.getInt("Population")));
                 }
             }
 
@@ -100,7 +100,7 @@ public class CityDaoJDBC implements CityDAO {
                     cityList.add( new City(
                             resultSet.getInt("ID"), resultSet.getString("Name"),
                             resultSet.getString("CountryCode"), resultSet.getString("District"),
-                            resultSet.getString("Population")));
+                            resultSet.getInt("Population")));
                 }
             }
 
@@ -129,7 +129,7 @@ public class CityDaoJDBC implements CityDAO {
                     cityList.add( new City(
                             resultSet.getInt("ID"), resultSet.getString("Name"),
                             resultSet.getString("CountryCode"), resultSet.getString("District"),
-                            resultSet.getString("Population")));
+                            resultSet.getInt("Population")));
                 }
             }
 
@@ -152,7 +152,7 @@ public class CityDaoJDBC implements CityDAO {
             preparedStatement.setString(1, city.name);
             preparedStatement.setString(2, city.countryCode);
             preparedStatement.setString(3, city.district);
-            preparedStatement.setString(4, city.population);
+            preparedStatement.setInt(4, city.population);
 
             preparedStatement.executeUpdate(sql);
 
@@ -176,7 +176,7 @@ public class CityDaoJDBC implements CityDAO {
             preparedStatement.setString(1, city.name);
             preparedStatement.setString(2, city.countryCode);
             preparedStatement.setString(3, city.district);
-            preparedStatement.setString(4, city.population);
+            preparedStatement.setInt(4, city.population);
             preparedStatement.setInt(5, city.getId());
 
            preparedStatement.executeUpdate();
