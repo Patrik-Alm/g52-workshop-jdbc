@@ -19,7 +19,7 @@ public class CityDaoJDBC implements CityDAO {
 
 
     @Override
-    public City findByID(int id) {
+    public City findById(int id) {
 
         String sql = "SELECT * FROM city WHERE ID = ?";
 
