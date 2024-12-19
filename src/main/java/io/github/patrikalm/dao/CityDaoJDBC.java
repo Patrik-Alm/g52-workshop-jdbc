@@ -43,7 +43,8 @@ public class CityDaoJDBC implements CityDAO {
                 }
 
         } catch (SQLException e1) {
-            throw new RuntimeException("Oops, something went wrong with the database query!");
+            e1.printStackTrace();
+            throw new RuntimeException("Oops, something went wrong with the database query!" + e1.getMessage());
         }
 
         return null;
@@ -146,25 +147,27 @@ public class CityDaoJDBC implements CityDAO {
     @Override
     public City add(City city) {
 
-        String sql = "INSERT INTO city (2,3,4,5) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO city (Name, CountryCode, District, Population) VALUES (?,?,?,?)";
 
         try(
                 Connection connection = DataBaseConnection.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 ) {
 
-            preparedStatement.setString(1, city.name);
-            preparedStatement.setString(2, city.countryCode);
-            preparedStatement.setString(3, city.district);
-            preparedStatement.setInt(4, city.population);
 
-            preparedStatement.executeUpdate(sql);
+            preparedStatement.setString(1, city.getName());
+            preparedStatement.setString(2, city.getCountryCode());
+            preparedStatement.setString(3, city.getDistrict());
+            preparedStatement.setInt(4, city.getPopulation());
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            return city;
 
 
         } catch (SQLException e5) {
-            throw new RuntimeException("Oops, something went wrong with adding an object to the database!");
+            throw new RuntimeException("Oops, something went wrong with adding an object to the database!" + e5.getMessage());
         }
-        return null;
     }
 
     @Override
@@ -202,6 +205,10 @@ public class CityDaoJDBC implements CityDAO {
                 ){
 
             preparedStatement.setInt(1, city.getId());
+
+            preparedStatement.executeUpdate();
+
+
 
         }catch (SQLException e7) {
             throw new RuntimeException("Oops, something went wrong with deleting an object in the database!");
